@@ -1,10 +1,10 @@
 #ifndef ORGANISMIMPL_H
 #define ORGANISMIMPL_H
 
-#include <cell.hpp>
-#include <creator.hpp>
-#include <grid.hpp>
-#include <organism.hpp>
+#include "cell.hpp"
+#include "creator.hpp"
+#include "grid.hpp"
+#include "organism.hpp"
 
 class OrganismImpl : public Organism
 {

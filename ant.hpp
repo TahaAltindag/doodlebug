@@ -1,9 +1,10 @@
 #ifndef ANT_H
 #define ANT_H
 
-#include <cell.hpp>
-#include <creator.hpp>
-#include <grid.hpp>
+#include "cell.hpp"
+#include "creator.hpp"
+#include "grid.hpp"
+#include "organismimpl.hpp"
 
 class Ant : public OrganismImpl
 {

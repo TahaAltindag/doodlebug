@@ -1,8 +1,4 @@
-#include <organism.hpp>
-
-const char ANT_CHAR = 'o';
-const char DOODLEBUG_CHAR = 'X';
-const char EMPTY_SPACE_CHAR = '-';
+#include "organism.hpp"
 
 Organism::Organism(
     int requiredSurvivalTime,
@@ -24,16 +20,6 @@ char getSymbolOrEmptyChar(Organism* organism)
     else
         return organism->symbol;
 }
-
-class OrganismComparator
-{
-public:
-    OrganismComparator(char value);
-    OrganismComparator(Organism* organism);
-    bool compare(Organism* organism);
-private:
-    const char compareValue;
-};
 
 OrganismComparator::OrganismComparator(char value) :
     compareValue(value)

@@ -1,10 +1,11 @@
 #ifndef DOODLEBUG_H
 #define DOODLEBUG_H
 
-#include <cell.hpp>
-#include <creator.hpp>
-#include <grid.hpp>
-#include <organism.hpp>
+#include "cell.hpp"
+#include "creator.hpp"
+#include "grid.hpp"
+#include "organism.hpp"
+#include "organismimpl.hpp"
 #include <vector>
 
 class Doodlebug : public OrganismImpl

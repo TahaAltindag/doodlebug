@@ -1,4 +1,4 @@
-#include <grid.hpp>
+#include "grid.hpp"
 
 const int POSSIBLE_ADJACENT_CELL_COUNT = 4;
 

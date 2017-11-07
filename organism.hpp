@@ -1,8 +1,12 @@
 #ifndef ORGANISM_H
 #define ORGANISM_H
 
-#include <cell.hpp>
+#include "cell.hpp"
 #include <vector>
+
+const char ANT_CHAR = 'o';
+const char DOODLEBUG_CHAR = 'X';
+const char EMPTY_SPACE_CHAR = '-';
 
 class Organism
 {
@@ -26,5 +30,15 @@ protected:
 };
 
 typedef std::vector<Organism*> OrganismVector;
+
+class OrganismComparator
+{
+public:
+    OrganismComparator(char value);
+    OrganismComparator(Organism* organism);
+    bool compare(Organism* organism);
+private:
+    const char compareValue;
+};
 
 #endif /* ORGANISM_H */

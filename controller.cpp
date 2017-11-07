@@ -1,4 +1,4 @@
-#include <controller.hpp>
+#include "controller.hpp"
 
 GridController::GridController() { }
 
@@ -98,13 +98,4 @@ void GridController::display() const
     std::cout << "total # of ants: ";
     std::cout << antCreator->count() << std::endl;
     grid->display();
-
-    mach_msg_type_number_t t_info_count = TASK_BASIC_INFO_COUNT;
-    if (KERN_SUCCESS != task_info(mach_task_self(),
-                                  TASK_BASIC_INFO, (task_info_t)&t_info, 
-                                  &t_info_count)) {
-        exit(-1);
-    }
-    std::cout << "resident size is: " << t_info.resident_size << std::endl;
-    std::cout << "virtual size is: " << t_info.virtual_size << std::endl;
 }

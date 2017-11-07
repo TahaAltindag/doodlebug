@@ -1,13 +1,12 @@
-// debugging only:
-#include<mach/mach.h>
-struct task_basic_info t_info;
+#ifndef CONTROLLER_H
+#define CONTROLLER_H
 
-#include <ant.hpp>
-#include <cell.hpp>
-#include <creator.hpp>
-#include <doodlebug.hpp>
-#include <grid.hpp>
-#include <organism.hpp>
+#include "ant.hpp"
+#include "cell.hpp"
+#include "creator.hpp"
+#include "doodlebug.hpp"
+#include "grid.hpp"
+#include "organism.hpp"
 #include <iostream>
 
 class GridController
@@ -27,3 +26,5 @@ private:
     void moveDoodlebugs();
     void createOrganisms(OrganismCreator* creator, int count);
 };
+
+#endif /* CONTROLLER_H */
