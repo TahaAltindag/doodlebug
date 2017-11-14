@@ -1,16 +1,3 @@
-// Walter Savitch, 2014 -- CH16 Question #9 Answer ("Doodlebug")
-
-// The goal for this project is to create a simple two-dimensional
-// predator-prey simulation. In this simulation the prey are ants
-// and the predators are doodlebugs. These critters live in a world
-// composed of a 2D grid of cells. Only one critter may occupy
-// a cell at a time. The grid is enclosed, so a critter is not
-// allowed to move off the edges of the world. Time is simulated in
-// time steps. Each critter performs some action every time step.
-// You should see a cyclical pattern between the population of
-// predators and prey, although random perturbations may lead
-// to the elimination of one or both species.
-
 #include "controller.hpp"
 #include "grid.hpp"
 #include <cstdlib>
