@@ -9,14 +9,13 @@
 class OrganismCreator
 {
 public:
-    OrganismCreator(Grid* grid);
+    OrganismCreator();
     virtual Organism* create(const Cell& cell) = 0;
     OrganismVector getOrganisms();
     void remove(const Cell& cell);
     int count() const;
 protected:
-    Grid* myGrid;
-    void store(Organism* organism, Cell cell);
+    void addOrganism(Organism* organismPtr);
     int findIndex(const Cell& cell);
     OrganismVector organisms;
 };

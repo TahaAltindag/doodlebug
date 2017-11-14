@@ -3,13 +3,9 @@
 OrganismImpl::OrganismImpl(
     int requiredSurvivalTime,
     char organismSymbol,
-    const Cell& cell,
-    Grid* grid,
-    OrganismCreator* creator
+    const Cell& cell
 ) :
-    Organism::Organism(requiredSurvivalTime, organismSymbol, cell),
-    myCreator(creator),
-    myGrid(grid)
+    Organism::Organism(requiredSurvivalTime, organismSymbol, cell)
 { }
 
 OrganismImpl::~OrganismImpl() {}
@@ -19,20 +15,6 @@ bool OrganismImpl::readyToBreed() const
     if (getTimeSurvived() == 0)
         return false;
     return ((getTimeSurvived() % required_survival_time_for_breeding) == 0);
-}
-
-void OrganismImpl::breed()
-{
-    Cell breedCell;
-    bool canBreed = false;
-
-    CellVector adjacentCells = myGrid->getRandomizedAdjacentCells(getCell());
-
-    breedCell = myGrid->getEmptyCell(adjacentCells, canBreed);
-
-    if (canBreed) {
-        myCreator->create(breedCell);
-    }
 }
 
 void OrganismImpl::setCell(const Cell& cell)
@@ -55,15 +37,7 @@ void OrganismImpl::incrementTimeSurvived()
     timeSurvived++;
 }
 
-void OrganismImpl::die()
+void OrganismImpl::move(const Cell& newCell)
 {
-    myCreator->remove(getCell());
-    myGrid->clearCell(getCell());
-}
-
-void OrganismImpl::moveOrganism(const Cell& newCell)
-{
-    myGrid->clearCell(getCell());
-    myGrid->setCellValue(newCell, this);
     setCell(newCell);
 }

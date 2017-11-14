@@ -1,16 +1,15 @@
 #include "creator.hpp"
 
-OrganismCreator::OrganismCreator(Grid* grid) : myGrid(grid) { }
+OrganismCreator::OrganismCreator() { }
 
 OrganismVector OrganismCreator::getOrganisms()
 {
     return organisms;
 }
 
-void OrganismCreator::store(Organism* organismPtr, Cell cell)
+void OrganismCreator::addOrganism(Organism* organismPtr)
 {
     organisms.push_back(organismPtr);
-    myGrid->setCellValue(cell, organismPtr);
 }
 
 int OrganismCreator::count() const

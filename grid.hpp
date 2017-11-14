@@ -20,12 +20,15 @@ public:
     CellVector getAdjacentCells(const Cell& cell) const;
     CellVector getRandomizedAdjacentCells(const Cell& cell) const;
     Cell getEmptyCell(const CellVector& adjacentCells, bool& found) const;
-    Cell getRandomMatchingCell(const CellVector& cellSet, OrganismComparator comparator, bool& found) const;
+    Cell getRandomMatchingCell(
+        const CellVector& cellSet,
+        OrganismComparator comparator,
+        bool& found) const;
 private:
     bool cellContains(const Cell& cell, OrganismComparator comparator) const;
     bool isInRange(const Cell& cell) const;
-    Organism*** cell2dArray;
-    const CellVector cell1dSet;
+    Organism*** organism2dArray;
+    const CellVector cellSet;
     const int xMax;
     const int yMax;
 };

@@ -2,7 +2,7 @@
 
 const int POSSIBLE_ADJACENT_CELL_COUNT = 4;
 
-CellVector getCell1dSet(int xMax, int yMax)
+CellVector getCellSet(int xMax, int yMax)
 {
     CellVector cellSet;
     for (int x = 0; x < xMax; x++) {
@@ -13,26 +13,26 @@ CellVector getCell1dSet(int xMax, int yMax)
     return cellSet;
 }
 
-Organism*** getCell2dArray(int xMax, int yMax)
+Organism*** get2dOrganismArray(int xMax, int yMax)
 {
-    Organism*** cellArray = 0;
+    Organism*** organismArray = 0;
     // create columns first
-    cellArray = new Organism**[xMax];
+    organismArray = new Organism**[xMax];
     for (int x = 0; x < xMax; x++) {
         // create rows second
-        cellArray[x] = new Organism*[yMax];
+        organismArray[x] = new Organism*[yMax];
         for (int y = 0; y < yMax; y++) {
-            cellArray[x][y] = NULL;
+            organismArray[x][y] = NULL;
         }
     }
-    return cellArray;
+    return organismArray;
 }
 
 Grid::Grid(int x, int y) :
     xMax(x),
     yMax(y),
-    cell1dSet(getCell1dSet(x, y)),
-    cell2dArray(getCell2dArray(x, y))
+    cellSet(getCellSet(x, y)),
+    organism2dArray(get2dOrganismArray(x, y))
 {
     std::cout << "Grid created." << std::endl;
 }
@@ -44,7 +44,7 @@ void Grid::clearCell(const Cell& cell)
 
 void Grid::setCellValue(const Cell& cell, Organism* organism)
 {
-    cell2dArray[cell.x][cell.y] = organism;
+    organism2dArray[cell.x][cell.y] = organism;
 }
 
 Cell Grid::getRandomEmptyCellInGrid() const
@@ -52,7 +52,9 @@ Cell Grid::getRandomEmptyCellInGrid() const
     Cell cell;
     bool found = false;
 
-    cell = getRandomMatchingCell(cell1dSet, OrganismComparator(EMPTY_SPACE_CHAR), found);
+    OrganismComparator comparator = OrganismComparator(EMPTY_SPACE_CHAR);
+    cell = getRandomMatchingCell(
+        cellSet, comparator, found);
 
     if (found)
         return cell;
@@ -66,7 +68,7 @@ Cell Grid::getRandomEmptyCellInGrid() const
 
 Organism* Grid::getCellValue(int x, int y) const
 {
-    return cell2dArray[x][y];
+    return organism2dArray[x][y];
 }
 
 Organism* Grid::getCellValue(const Cell& cell) const
@@ -117,7 +119,10 @@ CellVector Grid::getRandomizedAdjacentCells(const Cell& cell) const
     return adjacentCells;
 }
 
-Cell Grid::getRandomMatchingCell(const CellVector& cellSet, OrganismComparator comparator, bool& found) const
+Cell Grid::getRandomMatchingCell(
+    const CellVector& cellSet,
+    OrganismComparator comparator,
+    bool& found) const
 {
     Cell cell;
     int cellsSearched = 0;
@@ -136,7 +141,8 @@ Cell Grid::getRandomMatchingCell(const CellVector& cellSet, OrganismComparator c
 
 Cell Grid::getEmptyCell(const CellVector& adjacentCells, bool& found) const
 {
-    return getRandomMatchingCell(adjacentCells, OrganismComparator(EMPTY_SPACE_CHAR), found);
+    OrganismComparator comparator = OrganismComparator(EMPTY_SPACE_CHAR);
+    return getRandomMatchingCell(adjacentCells, comparator, found);
 }
 
 void Grid::display() const

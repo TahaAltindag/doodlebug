@@ -13,9 +13,7 @@ class Organism
 public:
     Organism(int requiredSurvivalTime, char organismSymbol, const Cell& cell);
     virtual ~Organism() = 0;
-    virtual void move() = 0;
-    virtual void breed() = 0;
-    virtual void die() = 0;
+    virtual void move(const Cell& newCell) = 0;
     virtual Cell getCell() const = 0;
     virtual void setCell(const Cell& cell) = 0;
     virtual int getTimeSurvived() const = 0;
