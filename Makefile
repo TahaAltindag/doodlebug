@@ -23,6 +23,6 @@ check:
 	valgrind --leak-check=full out/doodlebug
 
 graph:
-	python scripts/graphit.py out/doodlebug.csv
+	python scripts/graphit.py out/doodlebug.csv out/doodlebug.png
 
 .PHONY: init build run check
