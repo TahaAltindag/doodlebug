@@ -15,6 +15,7 @@
 #include "grid.hpp"
 #include <cstdlib>
 #include <ctime>
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -37,8 +38,17 @@ void debug_info()
 
 int main()
 {
+    std::ofstream out_stream;
     std::string temp;
     int count = 0;
+
+    out_stream.open("out/doodlebug.csv");
+    if (out_stream.fail())
+    {
+        std::cout << "Output file in out/ failed to open.\n";
+        exit(1);
+    }
+    out_stream << "iteration,doodlebugs,ants\n";  // csv header
 
     std::srand(std::time(NULL));  // required for random function usage
 
@@ -49,7 +59,7 @@ int main()
     std::cout << "Creating organisms..." << std::endl;
     controller.createAnts(100);
     controller.createDoodlebugs(5);
-    controller.display();
+    controller.display(out_stream, count);
 
     // After each time step, prompt the user to press
     // Enter to move to the next time step.
@@ -62,8 +72,9 @@ int main()
         count++;
 
         std::cout << "iterations: " << count <<std::endl;
-        controller.display();
+        controller.display(out_stream, count);
         debug_info();
     }
 
+    out_stream.close();
 }

@@ -7,6 +7,7 @@
 #include "doodlebug.hpp"
 #include "grid.hpp"
 #include "organism.hpp"
+#include <fstream>
 #include <iostream>
 
 class GridController
@@ -16,7 +17,7 @@ public:
     GridController(Grid* gridPtr);
     void createAnts(int count);
     void createDoodlebugs(int count);
-    void display() const;
+    void display(std::ostream& out_stream, int count) const;
     void step();
 private:
     Grid* grid;

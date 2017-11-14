@@ -181,11 +181,14 @@ void GridController::step()
     moveAnts();
 }
 
-void GridController::display() const
+void GridController::display(std::ostream& out_stream, int count) const
 {
+    out_stream << count << ",";
     std::cout << "total # of doodlebugs: ";
     std::cout << doodlebugCreator->count() << std::endl;
+    out_stream << doodlebugCreator->count() << ",";
     std::cout << "total # of ants: ";
     std::cout << antCreator->count() << std::endl;
+    out_stream << antCreator->count() << std::endl;
     grid->display();
 }
