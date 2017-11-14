@@ -17,6 +17,7 @@ public:
 protected:
     void addOrganism(Organism* organismPtr);
     int findIndex(const Cell& cell);
+private:
     OrganismVector organisms;
 };
 
