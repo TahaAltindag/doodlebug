@@ -17,7 +17,8 @@ public:
     GridController(Grid* gridPtr);
     void createAnts(int count);
     void createDoodlebugs(int count);
-    void display(std::ostream& out_stream, int count) const;
+    void display() const;
+    void writeDataToCsv(std::ostream& csvFileStream, int iteration) const;
     void step();
 private:
     Grid* grid;

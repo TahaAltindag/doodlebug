@@ -20,21 +20,21 @@ def main():
     y2 = []
     header = None
 
+    sample_rate = 10
+
     with open(input_filepath, 'r') as csvfile:
         plots = csv.reader(csvfile, delimiter=',')
         for (index, row) in enumerate(plots):
             if index == 0:
                 header = row
-            else:
-            # elif (index % sample_rate == 0):
+            # else:
+            elif (index % sample_rate == 0):
                 x.append(int(row[0]))
                 y1.append(int(row[1]))
                 y2.append(int(row[2]))
 
     plt.figure(figsize=(10, 7))  # 10" x 10"
-    # plt.plot(x,y1, 'ko', label=header[1], linestyle='None', markersize=1)
     plt.plot(x, y1, 'k-', label=header[1])
-    # plt.plot(x,y2, 'k+', label=header[2], linestyle='None', markersize=1)
     plt.plot(x, y2, 'r-', label=header[2])
     plt.xlabel(header[0])
     plt.ylabel('Organism count')

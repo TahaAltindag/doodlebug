@@ -41,6 +41,7 @@ int main()
     std::ofstream out_stream;
     std::string temp;
     int count = 0;
+    bool interactive_mode = true;
 
     out_stream.open("out/doodlebug.csv");
     if (out_stream.fail())
@@ -59,21 +60,33 @@ int main()
     std::cout << "Creating organisms..." << std::endl;
     controller.createAnts(100);
     controller.createDoodlebugs(5);
-    controller.display(out_stream, count);
+    controller.writeDataToCsv(out_stream, count);
+    controller.display();
 
     // After each time step, prompt the user to press
     // Enter to move to the next time step.
 
-    while (true) {
-        std::cout << "Press enter to move to the next time step.\n";
-        std::getline(std::cin, temp);
+    if (interactive_mode) {
+        while (true) {
+            std::cout << "Press enter to move to the next time step.\n";
+            std::getline(std::cin, temp);
 
-        controller.step();
-        count++;
+            controller.step();
+            count++;
 
-        std::cout << "iterations: " << count <<std::endl;
-        controller.display(out_stream, count);
-        debug_info();
+            std::cout << "iterations: " << count << std::endl;
+            controller.writeDataToCsv(out_stream, count);
+            controller.display();
+            debug_info();
+        }
+    }
+    else {
+        while (count < 10000) {
+            controller.step();
+            count++;
+            controller.writeDataToCsv(out_stream, count);
+        }
+        std::cout << "completed iterations: " << count << std::endl;
     }
 
     out_stream.close();
